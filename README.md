@@ -10,7 +10,7 @@ Nim version manager. Maybe multi-platform
 - `./bin/bin [version]`: return bin directory paths of specific version.
 - `./bin/installed`: list installed versions.
 - `./bin/versions`: list versions that can be installed.
-- `eval $(/work/bin/env [version])`: set up the environment of specific version.
+- `eval $(./bin/env [version])`: set up the environment of specific version.
 
 
 ## Requirements
