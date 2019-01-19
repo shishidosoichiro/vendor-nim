@@ -3,12 +3,13 @@
 # Exit, if return non-zero or use an undefined variable.
 set -eu
 
-# cd workdir
-scriptfile="$(realpath "$0")"
-bin="$(dirname "$scriptfile")"
-workdir="$(dirname "$bin")"
+cd "$(dirname "$0")/.."
+## cd workdir
+#scriptfile="$(realpath "$0")"
+#bin="$(dirname "$scriptfile")"
+#workdir="$(dirname "$bin")"
 
 # Variables
 VERSION=${1:-0.19.2}
 
-echo "$workdir/versions/$VERSION"
+echo "$PWD/versions/$VERSION"

@@ -1,3 +1,7 @@
+# Nim version manager
+
+Nim version manager. Maybe multi-platform
+
 
 ## Commands
 
@@ -12,4 +16,6 @@
 ## Requirements
 
 - `gcc`: required for `./bin/install`
+- `wget` or `curl`: required for `./bin/install`
 - `git`: required for `./bin/versions`
+- `bash`: required for Windows
