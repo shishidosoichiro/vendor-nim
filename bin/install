@@ -101,7 +101,7 @@ install() {
 
 # Start
 clean
-#download $DOWNLOAD_URL
-#extract $ARCHIVE_FILE
-#move $VERSION
+download $DOWNLOAD_URL
+extract $ARCHIVE_FILE
+move $VERSION
 install $os $VERSION
