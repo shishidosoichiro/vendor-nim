@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Exit, if return non-zero or use an undefined variable.
+set -eu
+
+cd "$(dirname "$0")/.."
+## Restore the current directory, if exit.
+#pwd="$PWD"
+#trap "cd \"$pwd\"" EXIT
+#
+## cd workdir
+#scriptfile="$(realpath "$0")"
+#bin="$(dirname "$scriptfile")"
+#workdir="$(dirname "$bin")"
+#cd "$workdir"
+
+# Variables
+GIT_REPO_URL=https://github.com/nim-lang/Nim.git
+
+git ls-remote --tags --refs $GIT_REPO_URL | sed 's/[\t ]\+/\t/g' | cut -f2 | sed 's|refs/tags/v||g' | sort -t. -k 1.2,1n -k 2,2n -k 3,3n -k 4,4n
