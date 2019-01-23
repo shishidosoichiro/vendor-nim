@@ -24,4 +24,4 @@ fi
 
 # Path
 bin="$(./bin/bin $VERSION)"
-echo "export PATH=\"$bin:$PATH\""
+echo "export PATH=\"$bin:\$PATH\""
