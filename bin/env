@@ -4,18 +4,10 @@
 set -eu
 
 cd "$(dirname "$0")/.."
-## Restore the current directory, if exit.
-#pwd="$PWD"
-#trap "cd \"$pwd\"" EXIT
-#
-## cd workdir
-#scriptfile="$(realpath "$0")"
-#bin="$(dirname "$scriptfile")"
-#workdir="$(dirname "$bin")"
-#cd "$workdir"
 
 # Variables
-VERSION=${1:-0.19.2}
+DEFAULT_VERSION=$(cat ./default-version.txt)
+VERSION=${1:-$DEFAULT_VERSION}
 
 # If set path already, delete it.
 if echo "$PATH" | grep -q "$PWD"; then

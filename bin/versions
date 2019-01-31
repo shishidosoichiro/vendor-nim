@@ -4,15 +4,6 @@
 set -eu
 
 cd "$(dirname "$0")/.."
-## Restore the current directory, if exit.
-#pwd="$PWD"
-#trap "cd \"$pwd\"" EXIT
-#
-## cd workdir
-#scriptfile="$(realpath "$0")"
-#bin="$(dirname "$scriptfile")"
-#workdir="$(dirname "$bin")"
-#cd "$workdir"
 
 # Variables
 GIT_REPO_URL=https://github.com/nim-lang/Nim.git
