@@ -12,7 +12,7 @@ VERSION=${1:-$DEFAULT_VERSION}
 os=$(./bin/os)
 distro=$(./bin/distro)
 
-if [ $os = win ]; then
+if [ $os = windows ]; then
 	ARCHITECTURE=x64
 	ARCHIVE_BASE=nim-$VERSION
 	ARCHIVE_FILE=${ARCHIVE_BASE}_${ARCHITECTURE}.zip
@@ -62,7 +62,7 @@ clean
 filename=$(./bin/download $DOWNLOAD_URL)
 echo "filename: $filename"
 ./bin/extract "$filename" "versions/$VERSION"
-if [ $os = win ]; then
+if [ $os = windows ]; then
 	installForWindows $VERSION
 else
 	build $VERSION
