@@ -1,6 +1,7 @@
-# Node version manger
+# Nim version manager
 
-simple.
+Nim version manager. Maybe multi-platform
+
 
 ## Commands
 
@@ -14,12 +15,7 @@ simple.
 
 ## Requirements
 
-- `curl`: required for `./bin/install` and  `./bin/versions`
-- `tar`: required for `./bin/install`
-- `xz`: required for `./bin/install`
-
-
-```sh
-apt-get update
-apt-get install -y curl xz-utils
-```
+- `gcc`: required for `./bin/install`
+- `wget` or `curl`: required for `./bin/install`
+- `git`: required for `./bin/versions`
+- `bash`: required for Windows

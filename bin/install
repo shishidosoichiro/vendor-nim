@@ -17,13 +17,47 @@ fi
 # specify url
 os=$(./bin/os)
 distro=$(./bin/distro)
+
 if [ $os = windows ]; then
-	DOWNLOAD_URL=<url>
-elif [ $os = darwin ]; then
-	DOWNLOAD_URL=<url>
+	ARCHITECTURE=x64
+	ARCHIVE_BASE=nim-$VERSION
+	ARCHIVE_FILE=${ARCHIVE_BASE}_${ARCHITECTURE}.zip
+	DOWNLOAD_URL=https://nim-lang.org/download/$ARCHIVE_FILE
 else
-	DOWNLOAD_URL=<url>
+	ARCHIVE_BASE=nim-$VERSION
+	ARCHIVE_FILE=${ARCHIVE_BASE}.tar.xz
+	DOWNLOAD_URL=https://nim-lang.org/download/$ARCHIVE_FILE
+	#DOWNLOAD_URL=https://github.com/nim-lang/Nim/archive/v$VERSION.tar.gz
 fi
+
+# Install
+installForWindows() {
+	version=$1
+	cd versions/$version
+	#nim.exe is not in your PATH environment variable.
+  #Should it be added permanently? (y/n) n
+  #** is not in your PATH environment variable.
+  #Should it be added permanently? (y/n) n
+  #The following *incompatible* MingW installations exist
+  #C:\Program Files\Git\mingw64\bin
+  #*incompatible* means Nim and GCC disagree on the size of a pointer.
+  #No compatible MingW candidates found in the standard locations [Error]
+  #Do you want to download MingW from Nim's website? (y/n)
+  #Patching Nim's config to use:
+  #D:\shishidosoichiro\Documents\seap\draft\nim\dev\nim\versions\0.19.2\main\dist\mingw64\bin
+  #Would like to add Nim-0.19.2 to your start menu? (y/n)
+  echo -e "n\nn\ny\nn\n" | ./finish.exe
+	cd ../..
+}
+
+build() {
+	version=$1
+	cd versions/$version
+	sh build.sh
+	bin/nim c koch
+	./koch tools
+	cd ../..
+}
 
 # Start
 echo "install: $VERSION"
@@ -34,5 +68,9 @@ filename=$(./bin/download $DOWNLOAD_URL)
 echo "extract: $filename"
 ./bin/extract "$filename" "versions/$VERSION"
 echo "build $VERSION"
-./bin/build $VERSION
+if [ $os = windows ]; then
+	installForWindows $VERSION
+else
+	build $VERSION
+fi
 exit 0
