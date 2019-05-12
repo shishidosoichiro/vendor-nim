@@ -27,7 +27,9 @@ else
 	ARCHIVE_BASE=nim-$VERSION
 	ARCHIVE_FILE=${ARCHIVE_BASE}.tar.xz
 	DOWNLOAD_URL=https://nim-lang.org/download/$ARCHIVE_FILE
-	#DOWNLOAD_URL=https://github.com/nim-lang/Nim/archive/v$VERSION.tar.gz
+	if [ $VERSION = 0.19.6 ]; then
+		DOWNLOAD_URL=https://github.com/nim-lang/Nim/archive/v$VERSION.tar.gz
+	fi
 fi
 
 # Install
@@ -53,9 +55,15 @@ installForWindows() {
 build() {
 	version=$1
 	cd versions/$version
-	sh build.sh
-	bin/nim c koch
-	./koch tools
+	if [ $VERSION = 0.19.6 ]; then
+		sh build_all.sh
+		bin/nim c koch
+		./koch tools
+	else
+		sh build.sh
+		bin/nim c koch
+		./koch tools
+	fi
 	cd ../..
 }
 
