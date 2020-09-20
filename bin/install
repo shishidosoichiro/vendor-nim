@@ -52,16 +52,30 @@ installForWindows() {
 	cd ../..
 }
 
+
+verlte() {
+	[  "$1" = "`echo -e "$1\n$2" | sort --version-sort | head -n1`" ]
+}
+
+verlt() {
+	[ "$1" = "$2" ] && return 1 || verlte $1 $2
+}
+
 build() {
 	version=$1
 	cd versions/$version
-	if [ $VERSION = 0.19.6 ]; then
+	if [ $version = 0.19.6 ]; then
 		sh build_all.sh
+		bin/nim c koch
+		./koch tools
+	elif versionlte "$version" 1.2.2; then
+		sh build.sh
 		bin/nim c koch
 		./koch tools
 	else
 		sh build.sh
 		bin/nim c koch
+		./koch boot -d:release
 		./koch tools
 	fi
 	cd ../..
