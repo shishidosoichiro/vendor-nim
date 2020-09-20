@@ -68,7 +68,7 @@ build() {
 		sh build_all.sh
 		bin/nim c koch
 		./koch tools
-	elif versionlte "$version" 1.2.2; then
+	elif verlte "$version" 1.2.2; then
 		sh build.sh
 		bin/nim c koch
 		./koch tools
